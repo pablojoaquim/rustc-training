@@ -1,4 +1,7 @@
 
+use std::io;
+use rand::Rng;
+
 // We can create a project using cargo new.
 // We can build a project using cargo build.
 // We can build and run a project in one step using cargo run.
@@ -6,6 +9,10 @@
 // Instead of saving the result of the build in the same directory as our code, Cargo stores it in the target/debug directory.
 fn main() {
     println!("Guess the number!");
+
+    // we call the rand::thread_rng function that gives us the particular random number generator we’re going to use: 
+    // one that is local to the current thread of execution and is seeded by the operating system
+    let _secret_number = rand::thread_rng().gen_range(1..=100);
 
     println!("Please input your guess.");
 
@@ -20,7 +27,7 @@ fn main() {
     // which gives you a way to let multiple parts of your code access 
     // one piece of data without needing to copy that data into memory 
     // multiple times.
-    std::io::stdin()
+    io::stdin()
         .read_line(&mut guess)
         .expect("Failed to read line");
 
