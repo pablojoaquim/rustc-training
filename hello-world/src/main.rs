@@ -42,7 +42,10 @@ fn main() {
         // as a string. The trim method on a String instance will eliminate any whitespace 
         // at the beginning and end, which we must do before we can convert the string to 
         // a u32, which can only contain numerical data.
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         println!("You guessed: {guess}");
 
